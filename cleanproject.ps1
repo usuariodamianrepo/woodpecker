@@ -1,36 +1,38 @@
-$MainName = "Zero"
+$ProjectName = "Zero"
 
 <# create solution #>
 dotnet new solution
 
 <# create the projects #>
-dotnet new webapi -o "$MainName.Web"
+dotnet new webapi -o "$ProjectName.Web"
+New-Item -ItemType Directory -Path "$ProjectName.Web/Dtos"
+New-Item -ItemType Directory -Path "$ProjectName.Web/Extensions"
 
-dotnet new classlib -o "$MainName.Core"
-mkdir "$MainName.Core/Dtos"
-mkdir "$MainName.Core/Entities"
-mkdir "$MainName.Core/Interfaces"
+dotnet new classlib -o "$ProjectName.Core"
+New-Item -ItemType Directory -Path "$NameProject.Core/Dtos"
+New-Item -ItemType Directory -Path "$NameProject.Core/Entities"
+New-Item -ItemType Directory -Path "$NameProject.Core/Interfaces"
 
-dotnet new classlib -o "$MainName.Services"
-mkdir "$MainName.Services/Validations"
+dotnet new classlib -o "$ProjectName.Services"
+New-Item -ItemType Directory -Path "$ProjectName.Services/Validations"
 
-dotnet new classlib -o "$MainName.Infrastructure"
-mkdir "$MainName.Infrastructure/Data"
-mkdir "$MainName.Infrastructure/Repositories"
-mkdir "$MainName.Infrastructure/Services"
+dotnet new classlib -o "$ProjectName.Infrastructure"
+New-Item -ItemType Directory -Path "$ProjectName.Infrastructure/Data"
+New-Item -ItemType Directory -Path "$ProjectName.Infrastructure/Repositories"
+New-Item -ItemType Directory -Path "$ProjectName.Infrastructure/Services"
 
 <# add the projects to the solution #>
-dotnet sln add "$MainName.Web/$MainName.Web.csproj"
-dotnet sln add "$MainName.Core/$MainName.Core.csproj"
-dotnet sln add "$MainName.Services/$MainName.Services.csproj"
-dotnet sln add "$MainName.Infrastructure/$MainName.Infrastructure.csproj"
+dotnet sln add "$ProjectName.Web/$ProjectName.Web.csproj"
+dotnet sln add "$ProjectName.Core/$ProjectName.Core.csproj"
+dotnet sln add "$ProjectName.Services/$ProjectName.Services.csproj"
+dotnet sln add "$ProjectName.Infrastructure/$ProjectName.Infrastructure.csproj"
 
 <# add the references #>
-dotnet add "$MainName.Web/$MainName.Web.csproj" reference "$MainName.Core/$MainName.Core.csproj"
-dotnet add "$MainName.Web/$MainName.Web.csproj" reference "$MainName.Services/$MainName.Services.csproj"
-dotnet add "$MainName.Web/$MainName.Web.csproj" reference "$MainName.Infrastructure/$MainName.Infrastructure.csproj"
-dotnet add "$MainName.Infrastructure/$MainName.Infrastructure.csproj" reference "$MainName.Core/$MainName.Core.csproj"
-dotnet add "$MainName.Services/$MainName.Services.csproj" reference "$MainName.Core/$MainName.Core.csproj"
+dotnet add "$ProjectName.Web/$ProjectName.Web.csproj" reference "$ProjectName.Core/$ProjectName.Core.csproj"
+dotnet add "$ProjectName.Web/$ProjectName.Web.csproj" reference "$ProjectName.Services/$ProjectName.Services.csproj"
+dotnet add "$ProjectName.Web/$ProjectName.Web.csproj" reference "$ProjectName.Infrastructure/$ProjectName.Infrastructure.csproj"
+dotnet add "$ProjectName.Infrastructure/$ProjectName.Infrastructure.csproj" reference "$ProjectName.Core/$ProjectName.Core.csproj"
+dotnet add "$ProjectName.Services/$ProjectName.Services.csproj" reference "$ProjectName.Core/$ProjectName.Core.csproj"
 
 
-Write-Host "Congratulations! the $MainName successfully"
+Write-Host "Congratulations! the $ProjectName successfully"
