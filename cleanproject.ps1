@@ -1,4 +1,7 @@
-$ProjectName = "Zero"
+param(
+	[parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
+	[string]$ProjectName
+)
 
 <# create solution #>
 dotnet new solution
@@ -9,9 +12,11 @@ New-Item -ItemType Directory -Path "$ProjectName.Web/Dtos"
 New-Item -ItemType Directory -Path "$ProjectName.Web/Extensions"
 
 dotnet new classlib -o "$ProjectName.Core"
-New-Item -ItemType Directory -Path "$NameProject.Core/Dtos"
-New-Item -ItemType Directory -Path "$NameProject.Core/Entities"
-New-Item -ItemType Directory -Path "$NameProject.Core/Interfaces"
+New-Item -ItemType Directory -Path "$ProjectName.Core/Dtos"
+New-Item -ItemType Directory -Path "$ProjectName.Core/Entities/Repositories"
+New-Item -ItemType Directory -Path "$ProjectName.Core/Entities/Services"
+New-Item -ItemType Directory -Path "$ProjectName.Core/Entities/Shared"
+New-Item -ItemType Directory -Path "$ProjectName.Core/Interfaces"
 
 dotnet new classlib -o "$ProjectName.Services"
 New-Item -ItemType Directory -Path "$ProjectName.Services/Validations"
@@ -34,5 +39,7 @@ dotnet add "$ProjectName.Web/$ProjectName.Web.csproj" reference "$ProjectName.In
 dotnet add "$ProjectName.Infrastructure/$ProjectName.Infrastructure.csproj" reference "$ProjectName.Core/$ProjectName.Core.csproj"
 dotnet add "$ProjectName.Services/$ProjectName.Services.csproj" reference "$ProjectName.Core/$ProjectName.Core.csproj"
 
-
 Write-Host "Congratulations! the $ProjectName successfully"
+
+dotnet build
+
