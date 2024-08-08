@@ -1,5 +1,6 @@
 param(
-	[parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
+	[Parameter(Mandatory = $true, HelpMessage = "Provide the Project Name.")]
+    [ValidateNotNullOrEmpty()]
 	[string]$ProjectName
 )
 
@@ -7,9 +8,10 @@ param(
 dotnet new solution
 
 <# create the projects #>
-dotnet new webapi -o "$ProjectName.Web"
+dotnet new webapi -n "$ProjectName.Web" -controllers
 New-Item -ItemType Directory -Path "$ProjectName.Web/Dtos"
 New-Item -ItemType Directory -Path "$ProjectName.Web/Extensions"
+New-Item -ItemType Directory -Path "$ProjectName.Web/Mappers"
 
 dotnet new classlib -o "$ProjectName.Core"
 New-Item -ItemType Directory -Path "$ProjectName.Core/Dtos"
