@@ -41,7 +41,7 @@ dotnet add "$ProjectName.Web/$ProjectName.Web.csproj" reference "$ProjectName.In
 dotnet add "$ProjectName.Infrastructure/$ProjectName.Infrastructure.csproj" reference "$ProjectName.Core/$ProjectName.Core.csproj"
 dotnet add "$ProjectName.Services/$ProjectName.Services.csproj" reference "$ProjectName.Core/$ProjectName.Core.csproj"
 
-Write-Host "Congratulations! the $ProjectName successfully"
-
 dotnet build
+
+Write-Host "Congratulations! the $ProjectName project was created successfully!"
 
