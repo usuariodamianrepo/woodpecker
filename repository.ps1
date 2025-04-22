@@ -56,7 +56,7 @@ Set-Content -Path "$ProjectName.Core/Interfaces/Repositories/IBaseRepository.cs"
 $iUnitOfWork = @"
 namespace $ProjectName.Core.Interfaces
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
         //ICityRepository CityRepository { get; }
 
@@ -193,11 +193,6 @@ namespace $ProjectName.Infrastructure.Data
         public async Task<int> CommitAsync()
         {
             return await _context.SaveChangesAsync();
-        }
-
-        public void Dispose()
-        {
-            _context.Dispose();
         }
     }
 }
