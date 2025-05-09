@@ -9,12 +9,12 @@ dotnet new solution
 
 <# create the projects #>
 dotnet new webapi -n "$ProjectName.Web" -controllers
-New-Item -ItemType Directory -Path "$ProjectName.Web/Dtos"
+New-Item -ItemType Directory -Path "$ProjectName.Web/DTOs"
 New-Item -ItemType Directory -Path "$ProjectName.Web/Extensions"
 New-Item -ItemType Directory -Path "$ProjectName.Web/Mappers"
 
 dotnet new classlib -o "$ProjectName.Core"
-New-Item -ItemType Directory -Path "$ProjectName.Core/Dtos"
+New-Item -ItemType Directory -Path "$ProjectName.Core/DTOs"
 New-Item -ItemType Directory -Path "$ProjectName.Core/Entities"
 New-Item -ItemType Directory -Path "$ProjectName.Core/Interfaces/Repositories"
 New-Item -ItemType Directory -Path "$ProjectName.Core/Interfaces/Services"
@@ -44,4 +44,5 @@ dotnet add "$ProjectName.Services/$ProjectName.Services.csproj" reference "$Proj
 dotnet build
 
 Write-Host "Congratulations! the $ProjectName project was created successfully!"
+Write-Host "The next step is include the folders created at the different projects from Visual Studio."
 

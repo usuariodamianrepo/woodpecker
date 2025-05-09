@@ -88,7 +88,6 @@ namespace $ProjectName.Services
         public async Task<$EntityName> Create($EntityName newEntiry)
         {
             //EntityNameValidator validator = new();
-            //newEntiry.InsertDate = DateTime.Now;
 
             //var validationResult = await validator.ValidateAsync(newEntiry);
             //if (validationResult.IsValid)
