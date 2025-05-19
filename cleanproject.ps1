@@ -9,7 +9,6 @@ dotnet new solution
 
 <# create the projects #>
 dotnet new webapi -n "$ProjectName.Web" -controllers
-New-Item -ItemType Directory -Path "$ProjectName.Web/DTOs"
 New-Item -ItemType Directory -Path "$ProjectName.Web/Extensions"
 New-Item -ItemType Directory -Path "$ProjectName.Web/Mappers"
 
